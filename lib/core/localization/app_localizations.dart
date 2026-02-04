@@ -295,16 +295,19 @@ class AppLocalizations {
 **1. Veri Toplama ve Kullanım**
 SocialSense, kişisel verilerinizi sunucularında toplamaz, saklamaz veya üçüncü taraflarla paylaşmaz. Uygulamaya yüklediğiniz Instagram verileri (ZIP dosyası), tamamen kendi cihazınızda (yerel olarak) işlenir ve analiz edilir.
 
-**2. Veri Güvenliği**
-Tüm analiz işlemleri çevrimdışı olarak telefonunuzda gerçekleşir. Verileriniz hiçbir şekilde internet üzerinden dışarıya aktarılmaz. Bu nedenle verilerinizin güvenliği ve gizliliği tam kontrolünüz altındadır.
+**2. Reklam Verileri**
+Uygulama, reklam gösterimi için Google AdMob hizmetini kullanmaktadır. Bu hizmet, size daha ilgili reklamlar göstermek amacıyla reklam kimliği (Advertising ID) gibi bazı cihaz bilgilerini toplayabilir. Bu veriler, Google'ın gizlilik politikasına uygun olarak işlenir ve sadece reklam gösterimi için kullanılır. Reklam verileriniz, Instagram analiz verilerinizle hiçbir şekilde ilişkilendirilmez veya birleştirilmez.
 
-**3. Sorumluluk Reddi**
-Bu uygulamanın geliştiricisi, kullanıcı verilerine erişemez ve bu verilerin güvenliğinden sorumlu tutulamaz. Cihazınızın güvenliği ve verilerinizin korunması tamamen kullanıcının sorumluluğundadır.
+**3. Veri Güvenliği**
+Tüm analiz işlemleri çevrimdışı olarak telefonunuzda gerçekleşir. Instagram verileriniz hiçbir şekilde internet üzerinden dışarıya aktarılmaz. Bu nedenle verilerinizin güvenliği ve gizliliği tam kontrolünüz altındadır.
 
-**4. Değişiklikler**
-Bu gizlilik politikası zaman zaman güncellenebilir. Değişiklikler bu sayfada yayınlanacaktır.
+**4. Sorumluluk Reddi**
+Bu uygulamanın geliştiricisi, kullanıcının Instagram verilerine erişemez ve bu verilerin güvenliğinden sorumlu tutulamaz. Cihazınızın güvenliği ve verilerinizin korunması tamamen kullanıcının sorumluluğundadır.
 
-**Son Güncelleme:** Ocak 2026
+**5. Değişiklikler**
+Bu gizlilik politikası zaman zaman güncellenebilir. Yeni güncellemeler socialsense.furkanerdogan.com adresinde yayınlanacaktır.
+
+**Son Güncelleme:** Şubat 2026
 ''',
     'terms_of_use_content': '''
 **Kullanım Koşulları**
@@ -590,16 +593,19 @@ Uygulama sadece kişisel kullanım içindir. Uygulamanın kodlarını kopyalamak
 **1. Data Collection and Usage**
 SocialSense does not collect, store, or share your personal data on its servers. The Instagram data (ZIP file) you upload to the app is processed and analyzed entirely locally on your device.
 
-**2. Data Security**
-All analysis operations occur offline on your phone. Your data is never transferred externally over the internet. Therefore, the security and privacy of your data are under your full control.
+**2. Advertising Data**
+The application uses Google AdMob service for displaying advertisements. This service may collect certain device information such as Advertising ID to show you more relevant ads. This data is processed in accordance with Google's privacy policy and is used only for ad serving purposes. Your advertising data is never linked or combined with your Instagram analysis data.
 
-**3. Disclaimer**
-The developer of this application has no access to user data and cannot be held responsible for the security of this data. The security of your device and the protection of your data are entirely the user's responsibility.
+**3. Data Security**
+All analysis operations occur offline on your phone. Your Instagram data is never transferred externally over the internet. Therefore, the security and privacy of your data are under your full control.
 
-**4. Changes**
-This privacy policy may be updated from time to time. Changes will be posted on this page.
+**4. Disclaimer**
+The developer of this application has no access to user Instagram data and cannot be held responsible for the security of this data. The security of your device and the protection of your data are entirely the user's responsibility.
 
-**Last Updated:** January 2026
+**5. Changes**
+This privacy policy may be updated from time to time. New updates will be published at socialsense.furkanerdogan.com.
+
+**Last Updated:** February 2026
 ''',
     'terms_of_use_content': '''
 **Terms of Use**
