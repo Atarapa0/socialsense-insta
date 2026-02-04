@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 class InterestsDistributionCard extends StatelessWidget {
   final Map<String, List<String>> interests;
@@ -8,18 +9,25 @@ class InterestsDistributionCard extends StatelessWidget {
   IconData _getCategoryIcon(String category) {
     switch (category) {
       case 'Spor':
+      case 'Sports':
         return Icons.sports_soccer;
       case 'Yemek & İçecek':
+      case 'Food & Drink':
         return Icons.restaurant;
       case 'Oyun & Teknoloji':
+      case 'Gaming & Technology':
         return Icons.sports_esports;
       case 'Moda & Güzellik':
+      case 'Fashion & Beauty':
         return Icons.checkroom;
       case 'Hayvanlar':
+      case 'Animals':
         return Icons.pets;
       case 'Sanat & Eğlence':
+      case 'Art & Entertainment':
         return Icons.theater_comedy;
       case 'Seyahat':
+      case 'Travel':
         return Icons.flight;
       default:
         return Icons.category;
@@ -29,26 +37,67 @@ class InterestsDistributionCard extends StatelessWidget {
   Color _getCategoryColor(String category) {
     switch (category) {
       case 'Spor':
+      case 'Sports':
         return Colors.green;
       case 'Yemek & İçecek':
+      case 'Food & Drink':
         return Colors.orange;
       case 'Oyun & Teknoloji':
+      case 'Gaming & Technology':
         return Colors.blue;
       case 'Moda & Güzellik':
+      case 'Fashion & Beauty':
         return Colors.pink;
       case 'Hayvanlar':
+      case 'Animals':
         return Colors.brown;
       case 'Sanat & Eğlence':
+      case 'Art & Entertainment':
         return Colors.purple;
       case 'Seyahat':
+      case 'Travel':
         return Colors.teal;
       default:
         return Colors.grey;
     }
   }
 
+  String _getCategoryName(String rawName, AppLocalizations l10n) {
+    final name = rawName.trim();
+    switch (name) {
+      case 'Seyahat':
+      case 'Travel':
+        return l10n.get('travel');
+      case 'Spor':
+      case 'Sports':
+        return l10n.get('sports');
+      case 'Yemek & İçecek':
+      case 'Food & Drink':
+        return l10n.get('food_drink');
+      case 'Oyun & Teknoloji':
+      case 'Gaming & Technology':
+        return l10n.get('gaming_tech');
+      case 'Moda & Güzellik':
+      case 'Fashion & Beauty':
+        return l10n.get('fashion_beauty');
+      case 'Hayvanlar':
+      case 'Animals':
+        return l10n.get('animals');
+      case 'Sanat & Eğlence':
+      case 'Art & Entertainment':
+        return l10n.get('art_entertainment');
+      case 'Diğer':
+      case 'Other':
+        return l10n.get('other');
+      default:
+        return name;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -66,17 +115,23 @@ class InterestsDistributionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'İlgi Alanları (${interests.length} Kategori)',
+            l10n
+                .get('interests_categories')
+                .replaceFirst('%count', '${interests.length}'),
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
           if (interests.isEmpty)
-            const Center(child: Text('İlgi alanı verisi bulunamadı.')),
+            Center(
+              child: Text(l10n.get('no_data_available') ?? 'No data'),
+            ), // Basit fallback
 
           ...interests.entries.map((entry) {
             final color = _getCategoryColor(entry.key);
+            final translatedName = _getCategoryName(entry.key, l10n);
+
             return Container(
               margin: const EdgeInsets.only(bottom: 12),
               decoration: BoxDecoration(
@@ -102,7 +157,7 @@ class InterestsDistributionCard extends StatelessWidget {
                     ),
                   ),
                   title: Text(
-                    entry.key,
+                    translatedName,
                     style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
                   trailing: Container(

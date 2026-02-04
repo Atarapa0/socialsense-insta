@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socialsense/core/constants/app_colors.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 /// Kayıtlı İçerik Hesabı Model
 class SavedContentAccount {
@@ -33,22 +34,23 @@ class _SavedContentDetailCardState extends State<SavedContentDetailCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Column(
       children: [
         // Kayıtlı İçerikler
-        _buildSavedContentSection(isDark),
+        _buildSavedContentSection(isDark, l10n),
         const SizedBox(height: 16),
 
         // Hikaye Beğenileri (opsiyonel)
         if (widget.storyLikesAccounts.isNotEmpty)
-          _buildStoryLikesSection(isDark),
+          _buildStoryLikesSection(isDark, l10n),
       ],
     );
   }
 
-  Widget _buildSavedContentSection(bool isDark) {
+  Widget _buildSavedContentSection(bool isDark, AppLocalizations l10n) {
     // İlk 5 hesap veya hepsi
     final displayAccounts = (_showAll || widget.accounts.length <= 5)
         ? widget.accounts
@@ -72,7 +74,7 @@ class _SavedContentDetailCardState extends State<SavedContentDetailCard> {
               Icon(Icons.bookmark, color: const Color(0xFF9C27B0), size: 22),
               const SizedBox(width: 10),
               Text(
-                'Kayıtlı İçerikler',
+                l10n.get('saved_items'),
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -96,7 +98,7 @@ class _SavedContentDetailCardState extends State<SavedContentDetailCard> {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Text(
-              'En Çok Kaydettiğin Hesaplar',
+              l10n.get('most_saved_accounts'),
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -130,8 +132,13 @@ class _SavedContentDetailCardState extends State<SavedContentDetailCard> {
                   children: [
                     Text(
                       _showAll
-                          ? 'Daha Az Göster'
-                          : 'Tümünü Gör (+${widget.accounts.length - 5})',
+                          ? l10n.get('show_less')
+                          : l10n
+                                .get('view_all_with_count')
+                                .replaceFirst(
+                                  '%count',
+                                  '${widget.accounts.length - 5}',
+                                ),
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -156,7 +163,7 @@ class _SavedContentDetailCardState extends State<SavedContentDetailCard> {
     );
   }
 
-  Widget _buildStoryLikesSection(bool isDark) {
+  Widget _buildStoryLikesSection(bool isDark, AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -175,7 +182,7 @@ class _SavedContentDetailCardState extends State<SavedContentDetailCard> {
               Icon(Icons.favorite, color: const Color(0xFFE91E63), size: 22),
               const SizedBox(width: 10),
               Text(
-                'Hikaye Beğenileri',
+                l10n.get('most_story_likers'),
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

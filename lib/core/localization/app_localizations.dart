@@ -287,6 +287,108 @@ class AppLocalizations {
     'faq_q5': 'Uygulama ücretli mi?',
     'faq_a5': 'Şu anda tamamen ücretsizdir.',
 
+    // Dashboard - Genel Bakış
+    'overview': 'Genel Bakış',
+    'total_likes': 'Toplam Beğeni',
+    'total_comments': 'Toplam Yorum',
+    'follower': 'Takipçi',
+    'followed': 'Takip Edilen',
+
+    // Raporlar - Detaylı İstatistikler
+    'mutual_followers': 'Karşılıklı Takipçiler',
+    'not_following_back': 'Seni Takip Etmeyenler',
+    'you_dont_follow_back': 'Sen Takip Etmiyorsun',
+    'interests_summary': 'İlgi Alanları Özeti',
+    'saved_content_summary': 'Kayıtlı İçerik Özeti',
+    'activity_profile': 'Aktivite Profili',
+    'time_distribution': 'Zaman Dağılımı',
+    'weekday_weekend': 'Hafta İçi/Hafta Sonu',
+    'interests_detail': 'İlgi Alanları Detayı',
+    'categories': 'Kategoriler',
+    'saved_accounts': 'Kayıtlı Hesaplar',
+    'story_likes': 'Hikaye Beğenileri',
+    'follower_details': 'Takipçi Detayları',
+    'most_liked_accounts': 'En Çok Beğendiğin Hesaplar',
+    'most_commented_accounts': 'En Çok Yorum Yaptığın Hesaplar',
+
+    // Sayfa başlıkları ve diğer metinler
+    'mutual_follow': 'Karşılıklı Takipler',
+    'not_following_you': 'Seni Takip Etmeyenler',
+    'you_dont_follow': 'Takip Etmediklerin',
+    'most_liked': 'En Çok Beğenenler',
+    'most_commented': 'En Çok Yorum Yapanlar',
+    'unread': 'okunmamış',
+    'close_friends': 'Yakın Arkadaşlar',
+    'pending_requests': 'Bekleyen İstekler',
+
+    // Zaman ve aktivite
+    'time_dist': 'Zaman Dağılımı',
+    'morning_time': 'Sabah (06-12)',
+    'afternoon_time': 'Öğle (12-18)',
+    'evening_time': 'Akşam (18-24)',
+    'night_time': 'Gece (00-06)',
+    'weekly_dist': 'Haftalık Dağılım',
+    'weekdays': 'Hafta İçi',
+    'weekends': 'Hafta Sonu',
+
+    // Widget başlıkları
+    'account_analysis': 'Hesap Analizleri',
+    'follower_status': 'Takipçi Detayları',
+    'mutual_short': 'Karşılıklı',
+    'not_following_short': 'Geri Takip Etmiyor',
+    'interests': 'İlgi Alanı',
+    'saved_content': 'Kayıtlı İçerik',
+    'view_all_btn': 'Tümü Gör',
+    'show_less': 'Daha Az Göster',
+
+    // Kart başlıkları (kısaltılmış)
+    'most_liked_short': 'En Çok\nBeğendiğin H...',
+    'most_commented_short': 'En Çok Yorum\nYaptığın Hesa...',
+    'mutual_followers_short': 'Karşılıklı\nTakipler',
+    'not_following_back_short': 'Geri Takip\nEtmediklerin',
+    'not_following_you_short': 'Seni Geri Takip\nEtmeyenler',
+
+    // Açıklamalar
+    'people_not_following_back':
+        'Takip ettiğin %count kişi seni geri takip etmiyor.',
+    'no_received_requests': 'Gelen takip isteği yok.',
+    'no_sent_requests': 'Bekleyen gönderilen istek yok.',
+    'accounts': 'hesap',
+
+    // Raporlar detay widget'ları
+    'saved_items': 'Kayıtlı İçerikler',
+    'most_saved_accounts': 'En Çok Kaydettiğin Hesaplar',
+    'view_all_with_count': 'Tümünü Gör (+%count)',
+    'sent': 'Gönderilen',
+    'received': 'Gelen',
+    'people_added': '%count kişi ekli',
+    'most_story_likers': 'En Çok Hikaye Beğenenler',
+    'most_story_reactions': 'Hikayelerine en çok tepki verenler',
+    'interests_categories': 'İlgi Alanları (%count Kategori)',
+    'category': 'Kategori',
+    'interests_short_title': 'İlgi Alanları',
+    'more': 'daha fazla',
+    'saved_content_short': 'Kayıtlı İçerikler',
+    'more_accounts': 'hesap daha',
+    'everyone_follows_back': 'Herkes seni geri takip ediyor!',
+    'interests_title': 'İlgi Alanların',
+
+    // Kategori isimleri
+    'travel': 'Seyahat',
+    'other': 'Diğer',
+    'sports': 'Spor',
+    'food_drink': 'Yemek & İçecek',
+    'gaming_tech': 'Oyun & Teknoloji',
+    'fashion_beauty': 'Moda & Güzellik',
+    'animals': 'Hayvanlar',
+    'art_entertainment': 'Sanat & Eğlence',
+
+    // Zaman formatları
+    'now': 'Şimdi',
+    'minutes_ago': '%count dk önce',
+    'hours_ago': '%count saat önce',
+    'days_ago': '%count gün önce',
+
     // Yasal
     'legal_disclaimer_title': 'Sorumluluk Reddi',
     'privacy_policy_content': '''
@@ -584,6 +686,108 @@ Uygulama sadece kişisel kullanım içindir. Uygulamanın kodlarını kopyalamak
         'The analysis is 100% accurate as it is based on official Instagram data.',
     'faq_q5': 'Is the app free?',
     'faq_a5': 'It is currently completely free.',
+
+    // Dashboard - Overview
+    'overview': 'Overview',
+    'total_likes': 'Total Likes',
+    'total_comments': 'Total Comments',
+    'follower': 'Followers',
+    'followed': 'Following',
+
+    // Reports - Detailed Statistics
+    'mutual_followers': 'Mutual Followers',
+    'not_following_back': 'Not Following You Back',
+    'you_dont_follow_back': 'You Don\'t Follow Back',
+    'interests_summary': 'Interests Summary',
+    'saved_content_summary': 'Saved Content Summary',
+    'activity_profile': 'Activity Profile',
+    'time_distribution': 'Time Distribution',
+    'weekday_weekend': 'Weekday/Weekend',
+    'interests_detail': 'Interests Detail',
+    'categories': 'Categories',
+    'saved_accounts': 'Saved Accounts',
+    'story_likes': 'Story Likes',
+    'follower_details': 'Follower Details',
+    'most_liked_accounts': 'Most Liked Accounts',
+    'most_commented_accounts': 'Most Commented Accounts',
+
+    // Page titles and other texts
+    'mutual_follow': 'Mutual Followers',
+    'not_following_you': 'Not Following You',
+    'you_dont_follow': 'You Don\'t Follow',
+    'most_liked': 'Most Liked',
+    'most_commented': 'Most Commented',
+    'unread': 'unread',
+    'close_friends': 'Close Friends',
+    'pending_requests': 'Pending Requests',
+
+    // Time and activity
+    'time_dist': 'Time Distribution',
+    'morning_time': 'Morning (06-12)',
+    'afternoon_time': 'Afternoon (12-18)',
+    'evening_time': 'Evening (18-24)',
+    'night_time': 'Night (00-06)',
+    'weekly_dist': 'Weekly Distribution',
+    'weekdays': 'Weekdays',
+    'weekends': 'Weekends',
+
+    // Widget titles
+    'account_analysis': 'Account Analysis',
+    'follower_status': 'Follower Status',
+    'mutual_short': 'Mutual',
+    'not_following_short': 'Not Following Back',
+    'interests': 'Interests',
+    'saved_content': 'Saved Content',
+    'view_all_btn': 'View All',
+    'show_less': 'Show Less',
+
+    // Card titles (shortened)
+    'most_liked_short': 'Most\nLiked Acc...',
+    'most_commented_short': 'Most\nCommented Acc...',
+    'mutual_followers_short': 'Mutual\nFollowers',
+    'not_following_back_short': 'You Don\'t\nFollow Back',
+    'not_following_you_short': 'Not Following\nYou Back',
+
+    // Descriptions
+    'people_not_following_back':
+        '%count people you follow are not following you back.',
+    'no_received_requests': 'No received follow requests.',
+    'no_sent_requests': 'No pending sent requests.',
+    'accounts': 'accounts',
+
+    // Reports detail widgets
+    'saved_items': 'Saved Content',
+    'most_saved_accounts': 'Most Saved Accounts',
+    'view_all_with_count': 'View All (+%count)',
+    'sent': 'Sent',
+    'received': 'Received',
+    'people_added': '%count people added',
+    'most_story_likers': 'Most Story Likers',
+    'most_story_reactions': 'People who react to your stories most',
+    'interests_categories': 'Interests (%count Categories)',
+    'category': 'Category',
+    'interests_short_title': 'Interests',
+    'more': 'more',
+    'saved_content_short': 'Saved Content',
+    'more_accounts': 'more accounts',
+    'everyone_follows_back': 'Everyone follows you back!',
+    'interests_title': 'Your Interests',
+
+    // Category names
+    'travel': 'Travel',
+    'other': 'Other',
+    'sports': 'Sports',
+    'food_drink': 'Food & Drink',
+    'gaming_tech': 'Gaming & Technology',
+    'fashion_beauty': 'Fashion & Beauty',
+    'animals': 'Animals',
+    'art_entertainment': 'Art & Entertainment',
+
+    // Time formats
+    'now': 'Now',
+    'minutes_ago': '%count min ago',
+    'hours_ago': '%count hr ago',
+    'days_ago': '%count days ago',
 
     // Legal
     'legal_disclaimer_title': 'Disclaimer',

@@ -276,6 +276,17 @@ class InstagramDataProvider extends ChangeNotifier {
   /// İlgi alanları
   List<InstagramInterest> get interests => _data?.interests ?? [];
 
+  /// Toplam ilgi alanı sayısı (Kategorize edilmişlerden hesaplanır)
+  int get totalInterestsCount {
+    if (_data == null) return 0;
+    int total = 0;
+    _data!.categorizedInterests.forEach((key, value) {
+      total += value.length;
+    });
+    // Eğer kategorize edilmiş boşsa normal listeyi dön
+    return total > 0 ? total : (_data!.interests.length);
+  }
+
   /// Zaman dağılımı
   Map<String, double> get timeDistribution => _data?.timeDistribution ?? {};
 

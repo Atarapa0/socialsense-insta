@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socialsense/core/constants/app_colors.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 /// Kayıtlı İçerik Özet Kartı (Anasayfa için)
 class SavedContentSummaryCard extends StatelessWidget {
@@ -16,6 +17,7 @@ class SavedContentSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return GestureDetector(
@@ -48,7 +50,7 @@ class SavedContentSummaryCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  'Kayıtlı İçerikler',
+                  l10n.get('saved_content_short'),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -124,7 +126,7 @@ class SavedContentSummaryCard extends StatelessWidget {
             }),
             if (topAccounts.length > 3) ...[
               Text(
-                '+${topAccounts.length - 3} hesap daha',
+                '+${topAccounts.length - 3} ${l10n.get('more_accounts')}',
                 style: TextStyle(
                   fontSize: 11,
                   color: AppColors.darkPrimary,

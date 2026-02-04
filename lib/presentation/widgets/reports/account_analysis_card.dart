@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socialsense/core/constants/app_colors.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 /// Hesap Analizi Model
 class AccountAnalysis {
@@ -32,13 +33,14 @@ class AccountAnalysisCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Başlık
         Text(
-          'Hesap Analizleri',
+          l10n.get('account_analysis'),
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -57,26 +59,28 @@ class AccountAnalysisCard extends StatelessWidget {
               Expanded(
                 child: _buildAnalysisSection(
                   context,
-                  title: 'En Çok\nBeğendiğin H...',
+                  title: l10n.get('most_liked_short'),
                   count: mostLikedCount,
                   accounts: mostLikedAccounts,
                   onTap: onMostLikedTap,
                   isDark: isDark,
                   iconData: Icons.favorite,
                   iconColor: const Color(0xFFFF6B6B),
+                  l10n: l10n,
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: _buildAnalysisSection(
                   context,
-                  title: 'En Çok Yorum\nYaptığın Hesa...',
+                  title: l10n.get('most_commented_short'),
                   count: mostCommentedCount,
                   accounts: mostCommentedAccounts,
                   onTap: onMostCommentedTap,
                   isDark: isDark,
                   iconData: Icons.chat_bubble,
                   iconColor: const Color(0xFF4ECDC4),
+                  l10n: l10n,
                 ),
               ),
             ],
@@ -95,6 +99,7 @@ class AccountAnalysisCard extends StatelessWidget {
     required bool isDark,
     required IconData iconData,
     required Color iconColor,
+    required AppLocalizations l10n,
   }) {
     return GestureDetector(
       onTap: onTap,
@@ -130,7 +135,7 @@ class AccountAnalysisCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '$count hesap',
+                  '$count ${l10n.get('accounts')}',
                   style: TextStyle(
                     fontSize: 11,
                     color: isDark
@@ -160,7 +165,7 @@ class AccountAnalysisCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Tümünü Gör',
+                    l10n.get('view_all_btn'),
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

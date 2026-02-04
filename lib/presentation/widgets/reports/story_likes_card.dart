@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 class StoryLikesCard extends StatefulWidget {
   final Map<String, int> storyLikes;
@@ -15,6 +16,7 @@ class _StoryLikesCardState extends State<StoryLikesCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final entries = widget.storyLikes.entries.toList();
     final itemCount = entries.length;
     final displayCount = _isExpanded
@@ -60,13 +62,13 @@ class _StoryLikesCardState extends State<StoryLikesCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'En Çok Hikaye Beğenenler',
+                      l10n.get('most_story_likers'),
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      'Hikayelerine en çok tepki verenler',
+                      l10n.get('most_story_reactions'),
                       style: Theme.of(
                         context,
                       ).textTheme.bodySmall?.copyWith(color: Colors.grey),
@@ -144,7 +146,9 @@ class _StoryLikesCardState extends State<StoryLikesCard> {
                     });
                   },
                   child: Text(
-                    _isExpanded ? 'Daha Az Göster' : 'Tümünü Gör',
+                    _isExpanded
+                        ? l10n.get('show_less')
+                        : l10n.get('view_all_btn'),
                     style: const TextStyle(
                       color: Color(0xFFE1306C),
                       fontWeight: FontWeight.bold,

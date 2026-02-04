@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socialsense/core/constants/app_colors.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 import 'package:socialsense/core/utils/instagram_launcher.dart';
 
 /// Takipçi Detayları Kartı
@@ -31,13 +32,14 @@ class FollowerDetailsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Başlık
         Text(
-          'Takipçi Detayları',
+          l10n.get('follower_details'),
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -56,22 +58,24 @@ class FollowerDetailsCard extends StatelessWidget {
               Expanded(
                 child: _buildFollowerSection(
                   context,
-                  title: 'Karşılıklı\nTakipler',
+                  title: l10n.get('mutual_followers_short'),
                   count: mutualFollowersCount,
                   accounts: mutualFollowers,
                   onTap: onMutualTap,
                   isDark: isDark,
+                  l10n: l10n,
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: _buildFollowerSection(
                   context,
-                  title: 'Geri Takip\nEtmediklerin',
+                  title: l10n.get('not_following_back_short'),
                   count: youDontFollowCount,
                   accounts: youDontFollow,
                   onTap: onYouDontFollowTap,
                   isDark: isDark,
+                  l10n: l10n,
                 ),
               ),
             ],
@@ -83,11 +87,12 @@ class FollowerDetailsCard extends StatelessWidget {
         // Seni Geri Takip Etmeyenler
         _buildFollowerSection(
           context,
-          title: 'Seni Geri Takip\nEtmeyenler',
+          title: l10n.get('not_following_you_short'),
           count: notFollowingYouCount,
           accounts: notFollowingYou,
           onTap: onNotFollowingYouTap,
           isDark: isDark,
+          l10n: l10n,
           fullWidth: true,
         ),
       ],
@@ -101,6 +106,7 @@ class FollowerDetailsCard extends StatelessWidget {
     required List<String> accounts,
     VoidCallback? onTap,
     required bool isDark,
+    required AppLocalizations l10n,
     bool fullWidth = false,
   }) {
     return GestureDetector(
@@ -137,7 +143,7 @@ class FollowerDetailsCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '$count hesap',
+                  '$count ${l10n.get('accounts')}',
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark
@@ -169,7 +175,7 @@ class FollowerDetailsCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Tümü Gör',
+                    l10n.get('view_all_btn'),
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

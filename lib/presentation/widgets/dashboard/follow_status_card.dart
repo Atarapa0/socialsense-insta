@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socialsense/core/constants/app_colors.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 /// Takip Durumu Kartı
 /// Karşılıklı takip ve geri takip etmeyenler istatistiklerini gösterir
@@ -20,6 +21,7 @@ class FollowStatusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
 
     return Row(
       children: [
@@ -31,7 +33,7 @@ class FollowStatusCard extends StatelessWidget {
               context,
               icon: Icons.sync_alt,
               iconColor: const Color(0xFF4CAF50),
-              label: 'Karşılıklı',
+              label: l10n.get('mutual_short'),
               value: mutualFollowers,
               isDark: isDark,
             ),
@@ -46,7 +48,7 @@ class FollowStatusCard extends StatelessWidget {
               context,
               icon: Icons.person_off,
               iconColor: const Color(0xFFE53935),
-              label: 'Geri Takip Etmiyor',
+              label: l10n.get('not_following_short'),
               value: notFollowingBack,
               isDark: isDark,
             ),

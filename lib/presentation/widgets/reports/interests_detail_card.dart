@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socialsense/core/constants/app_colors.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 /// İlgi Alanları Model
 class InterestCategory {
@@ -38,6 +39,7 @@ class _InterestsDetailCardState extends State<InterestsDetailCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
@@ -58,7 +60,7 @@ class _InterestsDetailCardState extends State<InterestsDetailCard> {
               Icon(Icons.interests, color: const Color(0xFFFF9800), size: 22),
               const SizedBox(width: 10),
               Text(
-                'İlgi Alanların',
+                l10n.get('interests_title'),
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -91,7 +93,7 @@ class _InterestsDetailCardState extends State<InterestsDetailCard> {
           const SizedBox(height: 20),
 
           // Kategoriler Grid
-          _buildCategoriesGrid(isDark),
+          _buildCategoriesGrid(isDark, l10n),
 
           // Tümünü Gör / Kapat Butonu
           if (widget.categories.length > 5) ...[
@@ -110,8 +112,13 @@ class _InterestsDetailCardState extends State<InterestsDetailCard> {
                   children: [
                     Text(
                       _showAll
-                          ? 'Daha Az Göster'
-                          : 'Tümünü Gör (+${widget.totalInterests - 5})',
+                          ? l10n.get('show_less')
+                          : l10n
+                                .get('view_all_with_count')
+                                .replaceFirst(
+                                  '%count',
+                                  '${widget.totalInterests - 5}',
+                                ),
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -136,7 +143,7 @@ class _InterestsDetailCardState extends State<InterestsDetailCard> {
     );
   }
 
-  Widget _buildCategoriesGrid(bool isDark) {
+  Widget _buildCategoriesGrid(bool isDark, AppLocalizations l10n) {
     // İlk 5 kategori veya hepsi (_showAll true ise hepsi)
     final displayCategories = (_showAll || widget.categories.length <= 5)
         ? widget.categories
@@ -148,7 +155,7 @@ class _InterestsDetailCardState extends State<InterestsDetailCard> {
       children: displayCategories.map((category) {
         final isExpanded = _expandedCategories.contains(category.name);
 
-        return _buildCategoryCard(category, isExpanded, isDark);
+        return _buildCategoryCard(category, isExpanded, isDark, l10n);
       }).toList(),
     );
   }
@@ -157,6 +164,7 @@ class _InterestsDetailCardState extends State<InterestsDetailCard> {
     InterestCategory category,
     bool isExpanded,
     bool isDark,
+    AppLocalizations l10n,
   ) {
     return Container(
       width: double.infinity,
@@ -189,7 +197,7 @@ class _InterestsDetailCardState extends State<InterestsDetailCard> {
             child: Row(
               children: [
                 Text(
-                  category.name,
+                  _getCategoryName(category.name, l10n),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -274,5 +282,41 @@ class _InterestsDetailCardState extends State<InterestsDetailCard> {
         ],
       ),
     );
+  }
+
+  String _getCategoryName(String rawName, AppLocalizations l10n) {
+    // Boşlukları temizle
+    final name = rawName.trim();
+
+    // String karşılaştırmasını kolaylaştırmak için
+    // Tam eşleşme kontrolü yap
+    switch (name) {
+      case 'Seyahat':
+      case 'Travel':
+        return l10n.get('travel');
+      case 'Spor':
+      case 'Sports':
+        return l10n.get('sports');
+      case 'Yemek & İçecek':
+      case 'Food & Drink':
+        return l10n.get('food_drink');
+      case 'Oyun & Teknoloji':
+      case 'Gaming & Technology':
+        return l10n.get('gaming_tech');
+      case 'Moda & Güzellik':
+      case 'Fashion & Beauty':
+        return l10n.get('fashion_beauty');
+      case 'Hayvanlar':
+      case 'Animals':
+        return l10n.get('animals');
+      case 'Sanat & Eğlence':
+      case 'Art & Entertainment':
+        return l10n.get('art_entertainment');
+      case 'Diğer':
+      case 'Other':
+        return l10n.get('other');
+      default:
+        return name;
+    }
   }
 }

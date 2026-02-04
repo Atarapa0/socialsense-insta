@@ -339,8 +339,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: PriorityCard(
               unfollowersCount: unfollowersCount,
               message: unfollowersCount > 0
-                  ? 'Takip ettiğin $unfollowersCount kişi seni geri takip etmiyor.'
-                  : 'Herkes seni geri takip ediyor!',
+                  ? l10n
+                        .get('people_not_following_back')
+                        .replaceFirst('%count', '$unfollowersCount')
+                  : l10n.get('everyone_follows_back'),
             ),
           ),
 
@@ -527,7 +529,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             notFollowingBackCount: hasData
                 ? dataProvider.notFollowingBack.length
                 : 0,
-            interestsCount: hasData ? dataProvider.interests.length : 0,
+            interestsCount: hasData ? dataProvider.totalInterestsCount : 0,
             savedCount: hasData ? dataProvider.savedItems.length : 0,
             onTap: () {
               setState(() => _currentNavIndex = 1);
@@ -822,7 +824,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               context,
               MaterialPageRoute(
                 builder: (_) => FollowerListScreen(
-                  title: 'Karşılıklı Takipler',
+                  title: l10n.get('mutual_follow'),
                   followers: dataProvider.mutualFollowers,
                 ),
               ),
@@ -831,7 +833,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               context,
               MaterialPageRoute(
                 builder: (_) => FollowerListScreen(
-                  title: 'Seni Takip Etmeyenler',
+                  title: l10n.get('not_following_you'),
                   followers: dataProvider.notFollowingBack,
                 ),
               ),
@@ -840,7 +842,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               context,
               MaterialPageRoute(
                 builder: (_) => FollowerListScreen(
-                  title: 'Takip Etmediklerin',
+                  title: l10n.get('you_dont_follow'),
                   followers: dataProvider.youDontFollow,
                 ),
               ),
@@ -867,7 +869,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (_) => FollowerListScreen(
-                    title: 'En Çok Beğenenler',
+                    title: l10n.get('most_liked'),
                     followers: mostLikedList.map((e) => e.username).toList(),
                   ),
                 ),
@@ -879,7 +881,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (_) => FollowerListScreen(
-                    title: 'En Çok Yorum Yapanlar',
+                    title: l10n.get('most_commented'),
                     followers: mostCommentedList
                         .map((e) => e.username)
                         .toList(),
@@ -1227,7 +1229,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   if (unreadCount > 0)
                     Text(
-                      '$unreadCount okunmamış',
+                      '$unreadCount ${l10n.get('unread')}',
                       style: TextStyle(
                         fontSize: 13,
                         color: isDark

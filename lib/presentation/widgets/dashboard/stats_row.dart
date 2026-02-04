@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socialsense/core/constants/app_colors.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 /// Stats Row (Karşılıklı, Geri Takip Etmiyor, İlgi Alanı, Kayıtlı İçerik)
 /// 2x2 Grid şeklinde istatistik kartları
@@ -22,6 +23,7 @@ class StatsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
 
     return GestureDetector(
       onTap: onTap,
@@ -36,7 +38,7 @@ class StatsRow extends StatelessWidget {
           // 1. Karşılıklı
           _buildStatCard(
             context,
-            'Karşılıklı',
+            l10n.get('mutual_short'),
             mutualCount,
             Icons.people_outline,
             const Color(0xFF00C853), // Yeşil
@@ -45,7 +47,7 @@ class StatsRow extends StatelessWidget {
           // 2. Geri Takip Etmeyen
           _buildStatCard(
             context,
-            'Geri Takip Etmiyor',
+            l10n.get('not_following_short'),
             notFollowingBackCount,
             Icons.person_off_outlined,
             const Color(0xFFFF9100), // Turuncu
@@ -54,7 +56,7 @@ class StatsRow extends StatelessWidget {
           // 3. İlgi Alanı
           _buildStatCard(
             context,
-            'İlgi Alanı',
+            l10n.get('interests'),
             interestsCount,
             Icons.auto_awesome_outlined,
             const Color(0xFFFFD600), // Sarı (Amber)
@@ -63,7 +65,7 @@ class StatsRow extends StatelessWidget {
           // 4. Kayıtlı İçerik
           _buildStatCard(
             context,
-            'Kayıtlı İçerik',
+            l10n.get('saved_content_short'),
             savedCount,
             Icons.bookmark_border,
             const Color(0xFF00B8D4), // Cyan

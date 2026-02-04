@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 import 'package:socialsense/core/utils/instagram_launcher.dart'; // Import eklendi
 
 class CloseFriendsCard extends StatefulWidget {
@@ -16,6 +17,7 @@ class _CloseFriendsCardState extends State<CloseFriendsCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final itemCount = widget.closeFriends.length;
     final displayCount = _isExpanded
         ? itemCount
@@ -54,13 +56,18 @@ class _CloseFriendsCardState extends State<CloseFriendsCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Yakın Arkadaşlar',
+                      l10n.get('close_friends'),
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '${widget.closeFriends.length} kişi ekli',
+                      l10n
+                          .get('people_added')
+                          .replaceFirst(
+                            '%count',
+                            '${widget.closeFriends.length}',
+                          ),
                       style: Theme.of(
                         context,
                       ).textTheme.bodySmall?.copyWith(color: Colors.grey),
@@ -119,7 +126,9 @@ class _CloseFriendsCardState extends State<CloseFriendsCard> {
                     });
                   },
                   child: Text(
-                    _isExpanded ? 'Daha Az Göster' : 'Tümünü Gör',
+                    _isExpanded
+                        ? l10n.get('show_less')
+                        : l10n.get('view_all_btn'),
                     style: const TextStyle(
                       color: Colors.green,
                       fontWeight: FontWeight.bold,

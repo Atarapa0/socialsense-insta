@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
+import '../../../core/localization/app_localizations.dart';
 
 /// Uyarı tipi enum'u
 enum AlertType {
@@ -55,6 +56,7 @@ class AlertCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
     final alertConfig = _getAlertConfig(alert.type);
 
     return Dismissible(
@@ -173,7 +175,7 @@ class AlertCard extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          _formatTime(alert.timestamp),
+                          _formatTime(alert.timestamp, l10n),
                           style: TextStyle(
                             fontSize: 11,
                             color: isDark
@@ -228,18 +230,20 @@ class AlertCard extends StatelessWidget {
     }
   }
 
-  String _formatTime(DateTime time) {
+  String _formatTime(DateTime time, AppLocalizations l10n) {
     final now = DateTime.now();
     final diff = now.difference(time);
 
     if (diff.inMinutes < 1) {
-      return 'Şimdi';
+      return l10n.get('now');
     } else if (diff.inMinutes < 60) {
-      return '${diff.inMinutes} dk önce';
+      return l10n
+          .get('minutes_ago')
+          .replaceFirst('%count', '${diff.inMinutes}');
     } else if (diff.inHours < 24) {
-      return '${diff.inHours} saat önce';
+      return l10n.get('hours_ago').replaceFirst('%count', '${diff.inHours}');
     } else if (diff.inDays < 7) {
-      return '${diff.inDays} gün önce';
+      return l10n.get('days_ago').replaceFirst('%count', '${diff.inDays}');
     } else {
       return '${time.day}/${time.month}/${time.year}';
     }

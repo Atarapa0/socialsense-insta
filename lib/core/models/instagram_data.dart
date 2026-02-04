@@ -689,18 +689,18 @@ class InstagramData {
 
   Map<String, List<String>> get categorizedInterests {
     final categories = <String, List<String>>{
-      'Spor': [],
-      'Yemek & İçecek': [],
-      'Oyun & Teknoloji': [],
-      'Moda & Güzellik': [],
-      'Hayvanlar': [],
-      'Sanat & Eğlence': [],
-      'Seyahat': [],
-      'Diğer': [],
+      'Sports': [],
+      'Food & Drink': [],
+      'Gaming & Technology': [],
+      'Fashion & Beauty': [],
+      'Animals': [],
+      'Art & Entertainment': [],
+      'Travel': [],
+      'Other': [],
     };
 
     final keywords = {
-      'Spor': [
+      'Sports': [
         'sport',
         'football',
         'soccer',
@@ -712,7 +712,7 @@ class InstagramData {
         'motor',
         'racing',
       ],
-      'Yemek & İçecek': [
+      'Food & Drink': [
         'food',
         'drink',
         'cooking',
@@ -727,7 +727,7 @@ class InstagramData {
         'meal',
         'dish',
       ],
-      'Oyun & Teknoloji': [
+      'Gaming & Technology': [
         'game',
         'gaming',
         'video game',
@@ -743,7 +743,7 @@ class InstagramData {
         'ai',
         'gadget',
       ],
-      'Moda & Güzellik': [
+      'Fashion & Beauty': [
         'fashion',
         'beauty',
         'makeup',
@@ -756,7 +756,7 @@ class InstagramData {
         'skin',
         'cosmetic',
       ],
-      'Hayvanlar': [
+      'Animals': [
         'animal',
         'pet',
         'dog',
@@ -768,7 +768,7 @@ class InstagramData {
         'zoo',
         'veterinary',
       ],
-      'Sanat & Eğlence': [
+      'Art & Entertainment': [
         'art',
         'music',
         'movie',
@@ -785,7 +785,7 @@ class InstagramData {
         'design',
         'drawing',
       ],
-      'Seyahat': [
+      'Travel': [
         'travel',
         'trip',
         'holiday',
@@ -803,28 +803,31 @@ class InstagramData {
 
     for (final interest in interests) {
       for (final item in interest.items) {
-        bool categorized = false;
-        final lowerItem = item.toLowerCase();
-
-        for (final entry in keywords.entries) {
-          if (entry.value.any((k) => lowerItem.contains(k))) {
-            if (!categories[entry.key]!.contains(item)) {
-              categories[entry.key]!.add(item);
+        bool matched = false;
+        for (final category in keywords.keys) {
+          if (keywords[category]!.any(
+            (k) => item.toLowerCase().contains(k.toLowerCase()),
+          )) {
+            // Tekrarlananları önlemek için kontrol
+            if (!categories[category]!.contains(item)) {
+              categories[category]!.add(item);
             }
-            categorized = true;
-            break;
+            matched = true;
+            break; // Bir kategoriye girdiyse diğerlerine bakma
           }
         }
-
-        if (!categorized) {
-          if (!categories['Diğer']!.contains(item)) {
-            categories['Diğer']!.add(item);
+        if (!matched) {
+          if (!categories['Other']!.contains(item)) {
+            categories['Other']!.add(item);
           }
         }
       }
     }
 
-    return Map.fromEntries(categories.entries.where((e) => e.value.isNotEmpty));
+    // Boş kategorileri temizle
+    categories.removeWhere((key, value) => value.isEmpty);
+
+    return categories;
   }
 
   Map<String, dynamic> toMap() => {

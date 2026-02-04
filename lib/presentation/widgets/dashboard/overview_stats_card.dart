@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socialsense/core/constants/app_colors.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 /// Genel Bakış İstatistik Kartı
 /// Toplam beğeni, yorum, takipçi, takip edilen gibi ana metrikleri gösterir
@@ -20,6 +21,7 @@ class OverviewStatsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context);
 
     return Container(
       padding: const EdgeInsets.all(20),
@@ -60,7 +62,7 @@ class OverviewStatsCard extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Text(
-                'Genel Bakış',
+                l10n.get('overview'),
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -81,7 +83,7 @@ class OverviewStatsCard extends StatelessWidget {
                   context,
                   icon: Icons.favorite,
                   iconColor: const Color(0xFFFF6B6B),
-                  label: 'Toplam Beğeni',
+                  label: l10n.get('total_likes'),
                   value: _formatNumber(totalLikes),
                   isDark: isDark,
                 ),
@@ -92,7 +94,7 @@ class OverviewStatsCard extends StatelessWidget {
                   context,
                   icon: Icons.chat_bubble,
                   iconColor: const Color(0xFF4ECDC4),
-                  label: 'Toplam Yorum',
+                  label: l10n.get('total_comments'),
                   value: _formatNumber(totalComments),
                   isDark: isDark,
                 ),
@@ -107,7 +109,7 @@ class OverviewStatsCard extends StatelessWidget {
                   context,
                   icon: Icons.people,
                   iconColor: AppColors.darkPrimary,
-                  label: 'Takipçi',
+                  label: l10n.get('follower'),
                   value: _formatNumber(followers),
                   isDark: isDark,
                 ),
@@ -118,7 +120,7 @@ class OverviewStatsCard extends StatelessWidget {
                   context,
                   icon: Icons.person_add,
                   iconColor: const Color(0xFFFFB347),
-                  label: 'Takip Edilen',
+                  label: l10n.get('followed'),
                   value: _formatNumber(following),
                   isDark: isDark,
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 class TimeDistributionCard extends StatelessWidget {
   final Map<String, double> timeData;
@@ -12,16 +13,17 @@ class TimeDistributionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       children: [
-        _buildTimeSection(context),
+        _buildTimeSection(context, l10n),
         const SizedBox(height: 16),
-        _buildWeekSection(context),
+        _buildWeekSection(context, l10n),
       ],
     );
   }
 
-  Widget _buildTimeSection(BuildContext context) {
+  Widget _buildTimeSection(BuildContext context, AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -39,7 +41,7 @@ class TimeDistributionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Zaman Dağılımı',
+            l10n.get('time_dist'),
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -47,7 +49,7 @@ class TimeDistributionCard extends StatelessWidget {
           const SizedBox(height: 20),
           _buildTimeItem(
             context,
-            'Sabah (06-12)',
+            l10n.get('morning_time'),
             timeData['morning'] ?? 0,
             Colors.orange,
             Icons.wb_sunny_outlined,
@@ -55,7 +57,7 @@ class TimeDistributionCard extends StatelessWidget {
           const SizedBox(height: 16),
           _buildTimeItem(
             context,
-            'Öğle (12-18)',
+            l10n.get('afternoon_time'),
             timeData['afternoon'] ?? 0,
             Colors.blue,
             Icons.wb_cloudy_outlined,
@@ -63,7 +65,7 @@ class TimeDistributionCard extends StatelessWidget {
           const SizedBox(height: 16),
           _buildTimeItem(
             context,
-            'Akşam (18-24)',
+            l10n.get('evening_time'),
             timeData['evening'] ?? 0,
             Colors.deepPurple,
             Icons.nightlight_outlined,
@@ -71,7 +73,7 @@ class TimeDistributionCard extends StatelessWidget {
           const SizedBox(height: 16),
           _buildTimeItem(
             context,
-            'Gece (00-06)',
+            l10n.get('night_time'),
             timeData['night'] ?? 0,
             Colors.indigo,
             Icons.bedtime_outlined,
@@ -133,7 +135,7 @@ class TimeDistributionCard extends StatelessWidget {
     );
   }
 
-  Widget _buildWeekSection(BuildContext context) {
+  Widget _buildWeekSection(BuildContext context, AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -151,7 +153,7 @@ class TimeDistributionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Haftalık Dağılım',
+            l10n.get('weekly_dist'),
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -162,7 +164,7 @@ class TimeDistributionCard extends StatelessWidget {
               Expanded(
                 child: _buildWeekItem(
                   context,
-                  'Hafta İçi',
+                  l10n.get('weekdays'),
                   weekData['weekday'] ?? 0,
                   const Color(0xFFE1306C),
                 ),
@@ -171,7 +173,7 @@ class TimeDistributionCard extends StatelessWidget {
               Expanded(
                 child: _buildWeekItem(
                   context,
-                  'Hafta Sonu',
+                  l10n.get('weekends'),
                   weekData['weekend'] ?? 0,
                   const Color(0xFF833AB4),
                 ),

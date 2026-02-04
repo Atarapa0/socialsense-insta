@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socialsense/core/constants/app_colors.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 /// İlgi Alanı Özet Kartı (Anasayfa için)
 class InterestsSummaryCard extends StatelessWidget {
@@ -16,6 +17,7 @@ class InterestsSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return GestureDetector(
@@ -48,7 +50,7 @@ class InterestsSummaryCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  'İlgi Alanları',
+                  l10n.get('interests_short_title'),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -100,7 +102,7 @@ class InterestsSummaryCard extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    category,
+                    _getCategoryName(category, l10n),
                     style: TextStyle(
                       fontSize: 11,
                       color: isDark
@@ -114,7 +116,7 @@ class InterestsSummaryCard extends StatelessWidget {
             if (topCategories.length > 4) ...[
               const SizedBox(height: 8),
               Text(
-                '+${topCategories.length - 4} daha fazla',
+                '+${topCategories.length - 4} ${l10n.get('more')}',
                 style: TextStyle(
                   fontSize: 11,
                   color: AppColors.darkPrimary,
@@ -126,5 +128,37 @@ class InterestsSummaryCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getCategoryName(String rawName, AppLocalizations l10n) {
+    final name = rawName.trim();
+    switch (name) {
+      case 'Seyahat':
+      case 'Travel':
+        return l10n.get('travel');
+      case 'Spor':
+      case 'Sports':
+        return l10n.get('sports');
+      case 'Yemek & İçecek':
+      case 'Food & Drink':
+        return l10n.get('food_drink');
+      case 'Oyun & Teknoloji':
+      case 'Gaming & Technology':
+        return l10n.get('gaming_tech');
+      case 'Moda & Güzellik':
+      case 'Fashion & Beauty':
+        return l10n.get('fashion_beauty');
+      case 'Hayvanlar':
+      case 'Animals':
+        return l10n.get('animals');
+      case 'Sanat & Eğlence':
+      case 'Art & Entertainment':
+        return l10n.get('art_entertainment');
+      case 'Diğer':
+      case 'Other':
+        return l10n.get('other');
+      default:
+        return name;
+    }
   }
 }

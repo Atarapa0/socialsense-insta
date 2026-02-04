@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socialsense/core/constants/app_colors.dart';
+import 'package:socialsense/core/localization/app_localizations.dart';
 
 class FollowRequestsCard extends StatefulWidget {
   final List<String> sentRequests;
@@ -20,6 +21,7 @@ class _FollowRequestsCardState extends State<FollowRequestsCard> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final sentCount = widget.sentRequests.length;
     final receivedCount = widget.receivedRequests.length;
@@ -43,7 +45,7 @@ class _FollowRequestsCardState extends State<FollowRequestsCard> {
               children: [
                 Expanded(
                   child: Text(
-                    'Takip İstekleri',
+                    l10n.get('pending_requests'),
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -62,9 +64,17 @@ class _FollowRequestsCardState extends State<FollowRequestsCard> {
                   ),
                   child: Row(
                     children: [
-                      _buildTabButton(context, 'Gönderilen ($sentCount)', 0),
+                      _buildTabButton(
+                        context,
+                        '${l10n.get('sent')} ($sentCount)',
+                        0,
+                      ),
                       const SizedBox(width: 4),
-                      _buildTabButton(context, 'Gelen ($receivedCount)', 1),
+                      _buildTabButton(
+                        context,
+                        '${l10n.get('received')} ($receivedCount)',
+                        1,
+                      ),
                     ],
                   ),
                 ),
@@ -79,8 +89,8 @@ class _FollowRequestsCardState extends State<FollowRequestsCard> {
                   ? Center(
                       child: Text(
                         _tabIndex == 0
-                            ? 'Bekleyen gönderilen istek yok.'
-                            : 'Gelen takip isteği yok.',
+                            ? l10n.get('no_sent_requests')
+                            : l10n.get('no_received_requests'),
                         style: TextStyle(
                           color: isDark
                               ? AppColors.darkTextSecondary
