@@ -18,6 +18,7 @@ class AdService {
   bool _isInterstitialLoading = false;
   bool _isAppOpenLoading = false;
   bool _isShowingAd = false;
+  DateTime? _appPausedTime;
 
   bool get isAppOpenAdAvailable => _appOpenAd != null;
 
@@ -50,16 +51,19 @@ class AdService {
             }
             // Form kapandıktan veya gerekmedikten sonra SDK'yı başlat
             _initAdMob();
+            _setupLifecycleListener();
           });
         } else {
           // Form yoksa direkt başlat
           _initAdMob();
+          _setupLifecycleListener();
         }
       },
       (FormError error) {
         debugPrint("Consent Info Error: ${error.message}");
         // Hata olsa bile SDK'yı başlat
         _initAdMob();
+        _setupLifecycleListener();
       },
     );
   }
@@ -203,5 +207,49 @@ class AdService {
     );
 
     _appOpenAd!.show();
+  }
+
+  WidgetsBindingObserver? _lifecycleObserver;
+
+  void _setupLifecycleListener() {
+    _lifecycleObserver = _AppLifecycleObserver(
+      onResume: () {
+        // Uygulama öne geldiğinde
+        if (_appPausedTime != null) {
+          final timeInBackground = DateTime.now().difference(_appPausedTime!);
+          debugPrint(
+            'Arka planda geçen süre: ${timeInBackground.inSeconds} sn',
+          );
+
+          if (timeInBackground.inSeconds >= 5) {
+            showAppOpenAdIfAvailable();
+          } else {
+            debugPrint('Süre 5 saniyeden az olduğu için reklam gösterilmedi.');
+          }
+        }
+        _appPausedTime = null;
+      },
+      onPause: () {
+        // Uygulama arka plana atıldığında
+        _appPausedTime = DateTime.now();
+      },
+    );
+    WidgetsBinding.instance.addObserver(_lifecycleObserver!);
+  }
+}
+
+class _AppLifecycleObserver extends WidgetsBindingObserver {
+  final VoidCallback onResume;
+  final VoidCallback onPause;
+
+  _AppLifecycleObserver({required this.onResume, required this.onPause});
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      onResume();
+    } else if (state == AppLifecycleState.paused) {
+      onPause();
+    }
   }
 }
