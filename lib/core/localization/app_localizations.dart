@@ -98,6 +98,9 @@ class AppLocalizations {
     'error_invalid_zip':
         'Bu ZIP dosyası Instagram verisi içermiyor. Lütfen doğru dosyayı seçin.',
     'error_generic': 'Bir hata oluştu. Lütfen tekrar deneyin.',
+    'upload_your_data': 'Verilerini Yükle',
+    'upload_disclaimer':
+        'Dosya yükleyerek Gizlilik Politikası ve Kullanım Koşullarını kabul etmiş sayılırsınız.',
 
     // Dashboard
     'good_morning': 'Günaydın',
@@ -497,6 +500,9 @@ Uygulama sadece kişisel kullanım içindir. Uygulamanın kodlarını kopyalamak
     'error_invalid_zip':
         'This ZIP file does not contain Instagram data. Please select the correct file.',
     'error_generic': 'An error occurred. Please try again.',
+    'upload_your_data': 'Upload Your Data',
+    'upload_disclaimer':
+        'By uploading, you agree to our Privacy Policy and Terms of Use.',
 
     // Dashboard
     'good_morning': 'Good Morning',

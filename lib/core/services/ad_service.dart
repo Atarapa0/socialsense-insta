@@ -28,8 +28,46 @@ class AdService {
   final String _iosAppOpenId = AdIds.appOpenIOS;
 
   Future<void> initialize() async {
-    await MobileAds.instance.initialize();
+    // GDPR Consent (Rıza) İşlemleri
+    /* Test için (Gerekirse açılabilir):
+    final debugSettings = ConsentDebugSettings(
+      debugGeography: DebugGeography.debugGeographyEea,
+      // testIdentifiers: ['TEST_DEVICE_ID_BURAYA'], // Gerçek cihaz ID'si gerekebilir, emülatörde gerekmeyebilir
+    );
+     */
+
+    // GDPR Consent (Rıza) İşlemleri
+    final params = ConsentRequestParameters();
+
+    ConsentInformation.instance.requestConsentInfoUpdate(
+      params,
+      () async {
+        // Form varsa yükle ve gerekirse göster
+        if (await ConsentInformation.instance.isConsentFormAvailable()) {
+          ConsentForm.loadAndShowConsentFormIfRequired((formError) {
+            if (formError != null) {
+              debugPrint("Consent Form Error: ${formError.message}");
+            }
+            // Form kapandıktan veya gerekmedikten sonra SDK'yı başlat
+            _initAdMob();
+          });
+        } else {
+          // Form yoksa direkt başlat
+          _initAdMob();
+        }
+      },
+      (FormError error) {
+        debugPrint("Consent Info Error: ${error.message}");
+        // Hata olsa bile SDK'yı başlat
+        _initAdMob();
+      },
+    );
+  }
+
+  void _initAdMob() {
+    MobileAds.instance.initialize();
     _loadInterstitialAd();
+    loadAppOpenAd();
   }
 
   // ==========================================

@@ -15,8 +15,7 @@ void main() async {
   // Reklam servisini başlat
   final adService = AdService();
   await adService.initialize();
-  // App Open reklamını önceden yükle
-  adService.loadAppOpenAd();
+  // App Open reklamı AdService içinde consent sonrası yüklenecek
 
   // Ayarları yükle
   final settingsProvider = AppSettingsProvider();

@@ -156,6 +156,23 @@ class _UploadScreenState extends State<UploadScreen> {
               // Dosya seç butonu
               _buildSelectFileButton(context, l10n),
 
+              const SizedBox(height: 16),
+
+              // Yasal uyarı
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  l10n.get('upload_disclaimer'),
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: isDark
+                        ? AppColors.darkTextHint
+                        : AppColors.lightTextHint,
+                    fontSize: 11,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+
               const SizedBox(height: 32),
             ],
           ),
